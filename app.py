@@ -15,16 +15,9 @@ import os
 nltk.download('punkt')
 nltk.download('wordnet')
 
-# Get the current directory of the Streamlit app
-# base_path = os.path.dirname(__file__)
 
-# # Path to the model file relative to the app directory
-# model_path = os.path.join(base_path, "chatbot_model.h5")
+model = load_model('chatbot_model.h5')
 
-# Load the model from the HDF5 file
-# model = load_model(model_path)
-with open("final.sav", "rb") as file:
-    model = load_model(file)
 
 # Functions from your project
 def scrape_goodreads(category):
