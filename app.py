@@ -8,6 +8,7 @@ from bs4 import BeautifulSoup
 from nltk.stem import WordNetLemmatizer
 from tensorflow.keras.models import load_model
 import json
+import os
 
 # Download necessary NLTK data
 nltk.download('punkt')
