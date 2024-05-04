@@ -10,6 +10,7 @@ from tensorflow.keras.models import load_model
 import json
 import os
 
+
 # Download necessary NLTK data
 nltk.download('punkt')
 nltk.download('wordnet')
@@ -23,7 +24,7 @@ nltk.download('wordnet')
 # Load the model from the HDF5 file
 # model = load_model(model_path)
 with open("final.sav", "rb") as file:
-    model = pickle.load(file)
+    model = load_model(file)
 
 # Functions from your project
 def scrape_goodreads(category):
