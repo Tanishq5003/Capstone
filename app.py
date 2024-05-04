@@ -13,8 +13,16 @@ import json
 nltk.download('punkt')
 nltk.download('wordnet')
 
+# Directory path
+directory_path = "C:\\Users\\mlscb\\OneDrive\\Desktop\\capstone\\book\\streamlit"
+
+# Model file name
+model_file = "chatbot_model.h5"
+
+# Absolute path to the model file
+model_path = os.path.join(directory_path, model_file)
 # Load the model from the HDF5 file
-model = load_model('chatbot_model.h5')
+model = load_model(model_path)
 
 # Functions from your project
 def scrape_goodreads(category):
