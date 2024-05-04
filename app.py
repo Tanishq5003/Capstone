@@ -14,14 +14,12 @@ import os
 nltk.download('punkt')
 nltk.download('wordnet')
 
-# Directory path
-directory_path = "C:\\Users\\mlscb\\OneDrive\\Desktop\\capstone\\book\\streamlit"
+# Get the current directory of the Streamlit app
+base_path = os.path.dirname(__file__)
 
-# Model file name
-model_file = "chatbot_model.h5"
+# Path to the model file relative to the app directory
+model_path = os.path.join(base_path, "chatbot_model.h5")
 
-# Absolute path to the model file
-model_path = os.path.join(directory_path, model_file)
 # Load the model from the HDF5 file
 model = load_model(model_path)
 
