@@ -64,9 +64,9 @@ words = []
 classes = []
 ignore_words = ['?', '!']
 
-intentss = pickle.load(open('intents.pkl','rb'))
-# data_file = open('capstoneIndentPart1.json').read()
-intents = json.loads(intentss)
+# intents = pickle.load(open('intents.pkl','rb'))
+data_file = open('capstoneIndentPart1.json').read()
+intents = json.loads(data_file)
 for intent in intents['intents']:
     for pattern in intent['patterns']:
         # Tokenize and lemmatize each word in the pattern
