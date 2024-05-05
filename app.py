@@ -56,7 +56,7 @@ def bow(sentence, words, show_details=True):
                 bag[i] = 1
                 if show_details:
                     print ("found in bag: %s" % w)
-
+    bag = bag[:35] + [0] * (35 - len(bag))
     return(np.array(bag))
 
 # Load intents and populate the words list
