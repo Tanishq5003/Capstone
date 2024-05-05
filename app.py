@@ -100,6 +100,7 @@ def getResponse(ints, intents_json):
     list_of_intents = intents_json['intents']
     for i in list_of_intents:
         if(i['tag']== tag):
+            print(tag)
             if tag == 'book_search':
                 category = st.text_input("Sure, I'd be happy to recommend a book. What type of book are you in the mood for?")
                 if category:
