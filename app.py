@@ -79,7 +79,7 @@ for intent in intents['intents']:
 lemmatizer = WordNetLemmatizer()  # Declare lemmatizer here
 words = [lemmatizer.lemmatize(word.lower()) for word in words if word not in ignore_words]
 words = sorted(list(set(words)))
-classes = sorted(list(set(classes)))
+
 
 def predict_class(sentence, model):
     # filter out predictions below a threshold
@@ -106,7 +106,6 @@ def getResponse(ints, intents_json):
                 category = st.text_input("Sure, I'd be happy to recommend a book. What type of book are you in the mood for?")
                 if category:
                     result = scrape_goodreads(category)
-                    
                 else:
                     result = "Please enter a category."
             else:
