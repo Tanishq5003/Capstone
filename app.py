@@ -106,7 +106,7 @@ def getResponse(ints, intents_json):
                 category = st.text_input("Sure, I'd be happy to recommend a book. What type of book are you in the mood for?")
                 if category:
                     result = scrape_goodreads(category)
-                    st.markdown(result, unsafe_allow_html=True)
+                    
                 else:
                     result = "Please enter a category."
             else:
