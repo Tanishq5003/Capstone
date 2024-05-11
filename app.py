@@ -97,13 +97,18 @@ def predict_class(sentence, model):
 
     return return_list
 
+if "button_clicked" not in st.session_state:
+    st.session_state.button_clicked = False
+
+def callback():
+    st.session_state.button_clicked = True
+
 def getResponse(ints, intents_json):
     tag = ints[0]['intent']
     list_of_intents = intents_json['intents']
     result = None
     for i in list_of_intents:
         if tag == 'book_search':
-            st.session_state['option'] = 'Book Recommendation'  # Set the dropdown to 'Book Recommendation'
             category = st.text_input('Enter the type of book you want to read:', key='category')
             if st.button('Get Recommendations'):
                 if category:
@@ -155,7 +160,7 @@ if option == 'Book Recommendation':
 elif option == 'Chat with the Bot':
     
     msg = st.text_input('You:', '')
-    if st.button('Send'):
+    if (st.button('Send', on_click=callback) or st.session_state.button_clicked):
         if msg:
             response = chatbot_response(msg)
             st.text_area('Bot:', value=response, height=200, max_chars=None, key=None)
