@@ -103,7 +103,7 @@ def getResponse(ints, intents_json):
     result = None
     for i in list_of_intents:
         if tag == 'book_search':
-            st.session_state.option = 'Book Recommendation'  # Set the dropdown to 'Book Recommendation'
+            st.session_state['option'] = 'Book Recommendation'  # Set the dropdown to 'Book Recommendation'
             category = st.text_input('Enter the type of book you want to read:', key='category')
             if st.button('Get Recommendations'):
                 if category:
