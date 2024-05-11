@@ -109,6 +109,7 @@ def getResponse(ints, intents_json):
                 button_clicked = st.button('Search')
                 if button_clicked:
                     result = scrape_goodreads(category)
+                    st.markdown(result, unsafe_allow_html=True) 
                 # else:
                 #     result = "Please enter a category."
             else:
