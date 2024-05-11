@@ -109,9 +109,10 @@ def getResponse(ints, intents_json):
                 if st.button('Get Recommendations'):
                     if category:
                         result = scrape_goodreads(category)
+                        result = '\n'.join(result)  # Join with newline characters
+
                         st.markdown(result, unsafe_allow_html=True)
-                    else:
-                        st.warning('Please enter a category.')
+                        
                 # st.session_state = 'Book Recommendation'
                 # category = st.text_input("Sure, I'd be happy to recommend a book. What type of book are you in the mood for?", '')
                 
