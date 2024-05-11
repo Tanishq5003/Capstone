@@ -105,10 +105,10 @@ def getResponse(ints, intents_json):
             print(tag)
             if tag == 'book_search':
                 category = st.text_input("Sure, I'd be happy to recommend a book. What type of book are you in the mood for?")
-                if category:
+                if st.button('Search'):
                     result = scrape_goodreads(category)
-                else:
-                    result = "Please enter a category."
+                # else:
+                #     result = "Please enter a category."
             else:
                 result = random.choice(i['responses'])
             break
