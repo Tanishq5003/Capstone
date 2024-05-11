@@ -105,12 +105,19 @@ def getResponse(ints, intents_json):
         if(i['tag']== tag):
             print(tag)
             if tag == 'book_search':
-                st.session_state = 'Book Recommendation'
-                category = st.text_input("Sure, I'd be happy to recommend a book. What type of book are you in the mood for?", '')
+                category = st.text_input('Enter the type of book you want to read:')
+                if st.button('Get Recommendations'):
+                    if category:
+                        result = scrape_goodreads(category)
+                        st.markdown(result, unsafe_allow_html=True)
+                    else:
+                        st.warning('Please enter a category.')
+                # st.session_state = 'Book Recommendation'
+                # category = st.text_input("Sure, I'd be happy to recommend a book. What type of book are you in the mood for?", '')
                 
-                if st.button('Search'):
-                    result = scrape_goodreads(category)
-                    st.markdown(result, unsafe_allow_html=True) 
+                # if st.button('Search'):
+                #     result = scrape_goodreads(category)
+                #     st.markdown(result, unsafe_allow_html=True) 
                 # else:
                 #     result = "Please enter a category."
             else:
