@@ -164,7 +164,7 @@ if option == 'Book Recommendation':
             st.warning('Please enter a category.')
 
 elif option == 'Chat with the Bot':
-    del st.session_state['category']
+    # del st.session_state['category']
     msg = st.text_input('You:', '')
     if st.button('Send'):
         if msg:
