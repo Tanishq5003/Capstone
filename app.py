@@ -106,7 +106,7 @@ def getResponse(ints, intents_json):
             print(tag)
             if tag == 'book_search':
                 if 'category' not in st.session_state:  # Check if category exists
-                    st.session_state['category'] = ''  # Initialize with empty string
+                    st.session_state.setdefault('category', '')
                     category = st.text_input('Enter the type of book you want to read:')
                     st.session_state['category'] = category  # Update session state with user input
 
