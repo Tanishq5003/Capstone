@@ -138,6 +138,7 @@ if option == 'Book Recommendation':
         if category:
             result = scrape_goodreads(category)
             st.markdown(result, unsafe_allow_html=True)
+            option ='Chat with the Bot' 
         else:
             st.warning('Please enter a category.')
 
