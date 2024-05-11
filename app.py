@@ -102,24 +102,18 @@ def getResponse(ints, intents_json):
     list_of_intents = intents_json['intents']
     result = None
     for i in list_of_intents:
-        if(i['tag']== tag):
-            print(tag)
-            if tag == 'book_search':
-                # Directly use session state to handle the input
-                category = st.text_input('Enter the type of book you want to read:', key='category')
-
-                if st.button('Get Recommendations'):
-                    st.session_state['fetch_books'] = True
-                    if st.session_state.category and st.session_state.get('fetch_books'):  # Check if category is not empty
-                        result = scrape_goodreads(category)
-                        result = '\n'.join(result)  # Join with newline characters
-                        st.markdown(result, unsafe_allow_html=True)
-                    else:
-                        st.warning("Please enter a category.")
-            else:
-                result = random.choice(i['responses'])
-            break
-
+        if tag == 'book_search':
+            st.session_state.option = 'Book Recommendation'  # Set the dropdown to 'Book Recommendation'
+            category = st.text_input('Enter the type of book you want to read:', key='category')
+            if st.button('Get Recommendations'):
+                if category:
+                    result = scrape_goodreads(category)
+                    st.markdown(result, unsafe_allow_html=True)
+                else:
+                    st.warning("Please enter a category.")
+    else:
+        result = random.choice(intents_json['intents'][0]['responses'])
+        st.text(result)
     return result
 
 def chatbot_response(msg):
@@ -132,10 +126,19 @@ def chatbot_response(msg):
 st.title('Book Recommendation Chatbot')
 
 # Sidebar for user input
+
+if 'option' not in st.session_state:
+    st.session_state['option'] = 'Chat with the Bot'  # Default option
+
 option = st.sidebar.selectbox(
     'Select an action',
-    ('Book Recommendation', 'Chat with the Bot')
+    ('Book Recommendation', 'Chat with the Bot'),
+    index=('Book Recommendation', 'Chat with the Bot').index(st.session_state.option)
 )
+# option = st.sidebar.selectbox(
+#     'Select an action',
+#     ('Book Recommendation', 'Chat with the Bot')
+# )
 
 if option == 'Book Recommendation':
     category = st.text_input('Enter the type of book you want to read:')
