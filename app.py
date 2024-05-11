@@ -105,23 +105,16 @@ def getResponse(ints, intents_json):
         if(i['tag']== tag):
             print(tag)
             if tag == 'book_search':
-                # Use Streamlit's session state to persist category input across reruns
-                if 'category' not in st.session_state:
-                    st.session_state.category = ''  # Initialize with an empty string if it doesn't exist
-                
-                # Create a text input that directly modifies session state
-                st.text_input('Enter the type of book you want to read:', key='category')
-                
+                # Directly use session state to handle the input
+                category = st.text_input('Enter the type of book you want to read:', key='category')
+
                 if st.button('Get Recommendations'):
-                    category = st.session_state.category
-                    if category:
+                    if category:  # Check if category is not empty
                         result = scrape_goodreads(category)
                         result = '\n'.join(result)  # Join with newline characters
-
                         st.markdown(result, unsafe_allow_html=True)
                     else:
                         st.warning("Please enter a category.")
-                # If the category is not provided, no need to display the result or error here since button press handles it
             else:
                 result = random.choice(i['responses'])
             break
