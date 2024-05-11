@@ -126,23 +126,23 @@ def chatbot_response(msg):
 # Streamlit UI
 st.title('Book Recommendation Chatbot')
 
-# Sidebar for user input
-option = st.sidebar.selectbox(
-    'Select an action',
-    ('Book Recommendation', 'Chat with the Bot')
-)
+# Initialize session state if it doesn't exist
+if 'mode' not in st.session_state:
+    st.session_state['mode'] = 'Book Recommendation'
 
-if option == 'Book Recommendation':
+# Sidebar for user input
+if st.session_state['mode'] == 'Book Recommendation':
     category = st.text_input('Enter the type of book you want to read:')
     if st.button('Get Recommendations'):
         if category:
             result = scrape_goodreads(category)
             st.markdown(result, unsafe_allow_html=True)
-            option ='Chat with the Bot' 
         else:
             st.warning('Please enter a category.')
+    if st.session_state['mode'] == 'Chat with the Bot':
+        st.session_state['mode'] = 'Chat with the Bot'
 
-elif option == 'Chat with the Bot':
+elif st.session_state['mode'] == 'Chat with the Bot':
     msg = st.text_input('You:', '')
     if st.button('Send'):
         if msg:
