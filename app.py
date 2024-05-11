@@ -135,8 +135,8 @@ option = st.sidebar.selectbox(
     index=('Book Recommendation', 'Chat with the Bot').index(st.session_state.option)
 )
 
-if 'option' not in st.session_state:
-    st.session_state['option'] = 'Chat with the Bot'  # Default option
+# if 'option' not in st.session_state:
+#     st.session_state['option'] = 'Chat with the Bot'  # Default option
 # option = st.sidebar.selectbox(
 #     'Select an action',
 #     ('Book Recommendation', 'Chat with the Bot')
