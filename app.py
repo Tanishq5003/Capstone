@@ -97,8 +97,8 @@ def predict_class(sentence, model):
 
     return return_list
 
-if "button_clicked" not in st.session_state:
-    st.session_state["button_clicked"] = False
+if 'button_clicked' not in st.session_state:
+    st.session_state['button_clicked'] = False
 
 def callback():
     st.session_state.button_clicked = True
