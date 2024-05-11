@@ -105,6 +105,7 @@ def getResponse(ints, intents_json):
         if(i['tag']== tag):
             print(tag)
             if tag == 'book_search':
+                st.session_state = 'Book Recommendation'
                 category = st.text_input("Sure, I'd be happy to recommend a book. What type of book are you in the mood for?", '')
                 
                 if st.button('Search'):
