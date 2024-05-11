@@ -105,9 +105,9 @@ def getResponse(ints, intents_json):
         if(i['tag']== tag):
             print(tag)
             if tag == 'book_search':
-                category = st.text_input("Sure, I'd be happy to recommend a book. What type of book are you in the mood for?")
-                button_clicked = st.button('Search')
-                if button_clicked:
+                category = st.text_input("Sure, I'd be happy to recommend a book. What type of book are you in the mood for?", '')
+                
+                if st.button('Search'):
                     result = scrape_goodreads(category)
                     st.markdown(result, unsafe_allow_html=True) 
                 # else:
