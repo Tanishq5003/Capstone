@@ -131,8 +131,8 @@ st.title('Book Recommendation Chatbot')
 
 option = st.sidebar.selectbox(
     'Select an action',
-    ('Book Recommendation', 'Chat with the Bot'),
-    index=('Book Recommendation', 'Chat with the Bot').index(st.session_state.option)
+    ('Book Recommendation', 'Chat with the Bot')
+    
 )
 
 # if 'option' not in st.session_state:
