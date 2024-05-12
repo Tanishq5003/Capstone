@@ -97,13 +97,7 @@ def predict_class(sentence, model):
 
     return return_list
 
-"st.session_state object : ", st.session_state
 
-if 'button_clicked' not in st.session_state:
-    st.session_state["button_clicked"] = False
-
-def callback():
-    st.session_state.button_clicked = True
 
 def getResponse(ints, intents_json):
     tag = ints[0]['intent']
@@ -133,6 +127,13 @@ def chatbot_response(msg):
 st.title('Book Recommendation Chatbot')
 
 # Sidebar for user input
+"st.session_state object : ", st.session_state
+
+if 'button_clicked' not in st.session_state:
+    st.session_state["button_clicked"] = False
+
+def callback():
+    st.session_state.button_clicked = True
 
 
 
