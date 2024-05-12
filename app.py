@@ -97,24 +97,22 @@ def predict_class(sentence, model):
 
     return return_list
 
-
-
 def getResponse(ints, intents_json):
     tag = ints[0]['intent']
     list_of_intents = intents_json['intents']
-    result = None
     for i in list_of_intents:
-        if tag == 'book_search':
-            category = st.text_input('Enter the type of book you want to read:', key='category')
-            if st.button('Get Recommendations'):
+        if(i['tag']== tag):
+            print(tag)
+            if tag == 'book_search':
+                category = st.text_input("Sure, I'd be happy to recommend a book. What type of book are you in the mood for?")
                 if category:
                     result = scrape_goodreads(category)
-                    st.markdown(result, unsafe_allow_html=True)
                 else:
-                    st.warning("Please enter a category.")
-    else:
-        result = random.choice(intents_json['intents'][0]['responses'])
-        st.text(result)
+                    result = "Please enter a category."
+            else:
+                result = random.choice(i['responses'])
+            break
+
     return result
 
 def chatbot_response(msg):
@@ -127,43 +125,23 @@ def chatbot_response(msg):
 st.title('Book Recommendation Chatbot')
 
 # Sidebar for user input
-# "st.session_state object : ", st.session_state
-
-# if 'boolean' not in st.session_state:
-#     st.session_state.boolean = False
-
-# def callback():
-#     st.session_state.boolean = True
-
-
-
 option = st.sidebar.selectbox(
     'Select an action',
     ('Book Recommendation', 'Chat with the Bot')
-    
 )
-
-# if 'option' not in st.session_state:
-#     st.session_state['option'] = 'Chat with the Bot'  # Default option
-# option = st.sidebar.selectbox(
-#     'Select an action',
-#     ('Book Recommendation', 'Chat with the Bot')
-# )
 
 if option == 'Book Recommendation':
     category = st.text_input('Enter the type of book you want to read:')
     if st.button('Get Recommendations'):
         if category:
             result = scrape_goodreads(category)
-            st.markdown(result, unsafe_allow_html=True) 
-            option = 'Chat with the Bot'
+            st.markdown(result, unsafe_allow_html=True)
         else:
             st.warning('Please enter a category.')
 
 elif option == 'Chat with the Bot':
-    
     msg = st.text_input('You:', '')
-    if st.button('Send') :
+    if st.button('Send'):
         if msg:
             response = chatbot_response(msg)
             st.text_area('Bot:', value=response, height=200, max_chars=None, key=None)
