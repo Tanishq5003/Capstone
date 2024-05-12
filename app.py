@@ -129,11 +129,11 @@ st.title('Book Recommendation Chatbot')
 # Sidebar for user input
 "st.session_state object : ", st.session_state
 
-if 'button_clicked' not in st.session_state:
-    st.session_state.button_clicked = False
+if 'boolean' not in st.session_state:
+    st.session_state.boolean = False
 
 def callback():
-    st.session_state.button_clicked = True
+    st.session_state.boolean = True
 
 
 
