@@ -127,13 +127,13 @@ def chatbot_response(msg):
 st.title('Book Recommendation Chatbot')
 
 # Sidebar for user input
-"st.session_state object : ", st.session_state
+# "st.session_state object : ", st.session_state
 
-if 'boolean' not in st.session_state:
-    st.session_state.boolean = False
+# if 'boolean' not in st.session_state:
+#     st.session_state.boolean = False
 
-def callback():
-    st.session_state.boolean = True
+# def callback():
+#     st.session_state.boolean = True
 
 
 
@@ -163,7 +163,7 @@ if option == 'Book Recommendation':
 elif option == 'Chat with the Bot':
     
     msg = st.text_input('You:', '')
-    if (st.button('Send', on_click=callback) or st.session_state.button_clicked):
+    if st.button('Send') :
         if msg:
             response = chatbot_response(msg)
             st.text_area('Bot:', value=response, height=200, max_chars=None, key=None)
